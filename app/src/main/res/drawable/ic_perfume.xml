@@ -1,0 +1,29 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+    <!-- Outer glass container -->
+    <path
+        android:pathData="M20,24h24a4,4 0,0 1,4 4v20a8,8 0,0 1,-8 8H28a8,8 0,0 1,-8 -8V28a4,4 0,0 1,4 -4z"
+        android:fillColor="#FCE7F3"
+        android:strokeColor="#DB2777"
+        android:strokeWidth="2"/>
+    <!-- Liquid content -->
+    <path
+        android:pathData="M21,34h22v14a6,6 0,0 1,-6 6H27a6,6 0,0 1,-6 -6z"
+        android:fillColor="#EC4899"
+        android:fillAlpha="0.4"/>
+    <!-- Dispenser Neck & Pump -->
+    <path
+        android:pathData="M28,24V18h8v6z"
+        android:fillColor="#DB2777"/>
+    <path
+        android:pathData="M25,18h14v-4H25z"
+        android:fillColor="#F59E0B"/>
+    <path
+        android:pathData="M32,14V8h5"
+        android:strokeColor="#DB2777"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"/>
+</vector>

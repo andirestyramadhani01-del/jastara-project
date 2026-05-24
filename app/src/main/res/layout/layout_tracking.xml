@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/trackingContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:visibility="gone">
+
+    <!-- Top Action Bar -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/trackingHeader"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/white"
+        android:paddingHorizontal="16dp"
+        android:elevation="2dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnTrackingBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_nav_home"
+            android:rotation="-90"
+            android:padding="6dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tracking Pesanan"
+            android:textColor="@color/text_dark"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Scrollable Tracking Details -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trackingHeader">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:paddingBottom="40dp">
+
+            <!-- Active Status Summary Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/card_border"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/txtTrackingOrderId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Order ID: ORD-168482"
+                        android:textColor="@color/text_dark"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Status Saat Ini: "
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp"/>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardTrackingStatusBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            app:cardCornerRadius="6dp"
+                            app:strokeWidth="0dp"
+                            app:cardBackgroundColor="@color/status_pending_bg">
+
+                            <TextView
+                                android:id="@+id/txtTrackingStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="10dp"
+                                android:paddingVertical="4dp"
+                                android:text="Menunggu"
+                                android:textColor="@color/status_pending"
+                                android:textSize="11sp"
+                                android:textStyle="bold"/>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Progressive Visual Status Bar -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/card_border"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Status Pengiriman"
+                        android:textColor="@color/text_dark"
+                        android:textStyle="bold"
+                        android:textSize="14sp"/>
+
+                    <!-- 4-Step Pipeline Icons & Lines -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <!-- Step 1: Menunggu -->
+                        <LinearLayout
+                            android:id="@+id/layoutStepPending"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imgStepPending"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_status_pending"
+                                android:background="@drawable/ic_nav_home"
+                                android:backgroundTint="@color/status_pending_bg"
+                                android:padding="6dp" />
+
+                            <TextView
+                                android:id="@+id/txtStepPending"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Menunggu"
+                                android:textColor="@color/status_pending"
+                                android:textSize="10sp"
+                                android:textStyle="bold"/>
+                        </LinearLayout>
+
+                        <!-- Line 1-2 -->
+                        <View
+                            android:id="@+id/lineStep1"
+                            android:layout_width="20dp"
+                            android:layout_height="3dp"
+                            android:background="@color/divider" />
+
+                        <!-- Step 2: Diproses -->
+                        <LinearLayout
+                            android:id="@+id/layoutStepProcessing"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imgStepProcessing"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_status_processing"
+                                android:background="@drawable/ic_nav_home"
+                                android:backgroundTint="@color/bg_gray"
+                                android:padding="6dp"
+                                android:tint="@color/text_muted"/>
+
+                            <TextView
+                                android:id="@+id/txtStepProcessing"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Diproses"
+                                android:textColor="@color/text_muted"
+                                android:textSize="10sp"/>
+                        </LinearLayout>
+
+                        <!-- Line 2-3 -->
+                        <View
+                            android:id="@+id/lineStep2"
+                            android:layout_width="20dp"
+                            android:layout_height="3dp"
+                            android:background="@color/divider" />
+
+                        <!-- Step 3: Dikirim -->
+                        <LinearLayout
+                            android:id="@+id/layoutStepShipped"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imgStepShipped"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_status_shipped"
+                                android:background="@drawable/ic_nav_home"
+                                android:backgroundTint="@color/bg_gray"
+                                android:padding="6dp"
+                                android:tint="@color/text_muted"/>
+
+                            <TextView
+                                android:id="@+id/txtStepShipped"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Dikirim"
+                                android:textColor="@color/text_muted"
+                                android:textSize="10sp"/>
+                        </LinearLayout>
+
+                        <!-- Line 3-4 -->
+                        <View
+                            android:id="@+id/lineStep3"
+                            android:layout_width="20dp"
+                            android:layout_height="3dp"
+                            android:background="@color/divider" />
+
+                        <!-- Step 4: Selesai -->
+                        <LinearLayout
+                            android:id="@+id/layoutStepCompleted"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imgStepCompleted"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/ic_status_completed"
+                                android:background="@drawable/ic_nav_home"
+                                android:backgroundTint="@color/bg_gray"
+                                android:padding="6dp"
+                                android:tint="@color/text_muted"/>
+
+                            <TextView
+                                android:id="@+id/txtStepCompleted"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Selesai"
+                                android:textColor="@color/text_muted"
+                                android:textSize="10sp"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Dynamic Payment Pelunasan Actions -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardTrackingActions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/card_border"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- CASE A: COD / FULL PAYMENT - Tunggu kurir -->
+                    <LinearLayout
+                        android:id="@+id/layoutTrackingStandardStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_status_shipped"
+                            android:tint="@color/status_processing"
+                            android:layout_marginBottom="8dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tunggu barang sampai oleh kurir / penerima"
+                            android:textColor="@color/text_dark"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
+                    </LinearLayout>
+
+                    <!-- CASE B: DP 50% (Belum lunas, menunggu pengiriman) -->
+                    <LinearLayout
+                        android:id="@+id/layoutTrackingDpWaiting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_status_pending"
+                            android:tint="@color/status_pending"
+                            android:layout_marginBottom="8dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pesanan Belum Lunas (DP 50%)"
+                            android:textColor="@color/text_dark"
+                            android:textSize="13sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Tombol pelunasan akan aktif setelah status pesanan berubah menjadi 'Dikirim' oleh Admin."
+                            android:textColor="@color/text_muted"
+                            android:textSize="11sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+
+                    <!-- CASE C: DP 50% - Tiba / Dikirim - Pelunasan Trigger -->
+                    <LinearLayout
+                        android:id="@+id/layoutTrackingDpSettlement"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tiba di Indonesia / Dikirim"
+                            android:textColor="@color/status_shipped"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Barang jastip Anda telah dikirim! Silakan lakukan pelunasan sisa pembayaran 50% agar barang segera diantarkan."
+                            android:textColor="@color/text_muted"
+                            android:textSize="12sp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:background="@color/status_shipped_bg"
+                            android:padding="12dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Sisa Tagihan (50%)"
+                                android:textColor="@color/status_shipped"
+                                android:textStyle="bold"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/txtSisaTagihanValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rp 360.000"
+                                android:textColor="@color/status_shipped"
+                                android:textStyle="bold"
+                                android:textSize="15sp"/>
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btnBayarPelunasan"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="16dp"
+                            android:text="Bayar Pelunasan"
+                            android:backgroundTint="@color/status_shipped"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            app:cornerRadius="8dp"/>
+
+                        <!-- Expanding Uploader for settlement proof -->
+                        <LinearLayout
+                            android:id="@+id/layoutPelunasanUploader"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="12dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Upload Bukti Sisa Transfer"
+                                android:textColor="@color/text_dark"
+                                android:textStyle="bold"
+                                android:textSize="12sp"/>
+
+                            <LinearLayout
+                                android:id="@+id/btnTriggerPelunasanUpload"
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:layout_marginTop="8dp"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:background="@drawable/ic_nav_home"
+                                android:backgroundTint="#F3F4F6">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@drawable/ic_nav_orders"
+                                    android:tint="@color/status_shipped"/>
+
+                                <TextView
+                                    android:id="@+id/txtPelunasanUploadStatus"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:text="Pilih Gambar Bukti Pelunasan"
+                                    android:textColor="@color/status_shipped"
+                                    android:textSize="11sp"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
+
+                            <!-- Progress Bar -->
+                            <LinearLayout
+                                android:id="@+id/layoutPelunasanProgress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <ProgressBar
+                                    android:id="@+id/progressPelunasanUpload"
+                                    style="?android:attr/progressBarStyleHorizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="6dp"
+                                    android:progressBackgroundTint="@color/divider"
+                                    android:progressTint="@color/status_shipped"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- CASE D: SELESAI SUCCESS STATE -->
+                    <LinearLayout
+                        android:id="@+id/layoutTrackingSuccessState"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/ic_status_completed"
+                            android:layout_marginBottom="12dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pesanan Selesai!"
+                            android:textColor="@color/status_completed"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Terima kasih sudah berbelanja menggunakan JASTARA! Pengalaman titip Anda sukses."
+                            android:textColor="@color/text_muted"
+                            android:textSize="12sp"
+                            android:gravity="center"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Order Detail Summary List -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/card_border"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Detail Pesanan"
+                        android:textColor="@color/text_dark"
+                        android:textStyle="bold"
+                        android:textSize="14sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtTrackingItemLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Tas Branded Import (x2)"
+                            android:textColor="@color/text_dark"
+                            android:textSize="13sp"/>
+
+                        <TextView
+                            android:id="@+id/txtTrackingItemPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rp 700.000"
+                            android:textColor="@color/text_dark"
+                            android:textSize="13sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Ongkir"
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp"/>
+
+                        <TextView
+                            android:id="@+id/txtTrackingShipping"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rp 20.000"
+                            android:textColor="@color/text_dark"
+                            android:textSize="13sp"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@color/divider"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Total"
+                            android:textColor="@color/text_dark"
+                            android:textStyle="bold"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/txtTrackingGrandTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rp 720.000"
+                            android:textColor="@color/brand_navy"
+                            android:textStyle="bold"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Metode Bayar"
+                            android:textColor="@color/text_muted"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/txtTrackingPayMethod"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="DP 50%"
+                            android:textColor="@color/text_dark"
+                            android:textSize="12sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtTrackingAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Alamat: Jl. Melati No. 12, Yogyakarta"
+                        android:textColor="@color/text_muted"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- DEV ADMIN SIMULATOR CARD IN TRACKING -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardDevAdminTrackingSim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="12dp"
+                app:strokeWidth="1.5dp"
+                app:strokeColor="@color/brand_gold"
+                app:cardBackgroundColor="#FFFBEB">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dev Console: Simulasikan Status Admin"
+                        android:textColor="@color/brand_gold_dark"
+                        android:textStyle="bold"
+                        android:textSize="13sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Klik tombol status di bawah untuk mensimulasikan perubahan status pengiriman dari sudut pandang admin!"
+                        android:textColor="@color/text_muted"
+                        android:textSize="11sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnDevSetPending"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Menunggu"
+                            android:textSize="9sp"
+                            android:padding="0dp"
+                            android:backgroundTint="@color/status_pending"
+                            android:textColor="@color/white"/>
+
+                        <Button
+                            android:id="@+id/btnDevSetProcessing"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Diproses"
+                            android:textSize="9sp"
+                            android:padding="0dp"
+                            android:backgroundTint="@color/status_processing"
+                            android:textColor="@color/white"/>
+
+                        <Button
+                            android:id="@+id/btnDevSetShipped"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Dikirim"
+                            android:textSize="9sp"
+                            android:padding="0dp"
+                            android:backgroundTint="@color/status_shipped"
+                            android:textColor="@color/white"/>
+
+                        <Button
+                            android:id="@+id/btnDevSetCompleted"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Selesai"
+                            android:textSize="9sp"
+                            android:padding="0dp"
+                            android:backgroundTint="@color/status_completed"
+                            android:textColor="@color/white"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

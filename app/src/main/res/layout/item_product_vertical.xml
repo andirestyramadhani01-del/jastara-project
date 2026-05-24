@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="12dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/card_border"
+    app:cardBackgroundColor="@color/white"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+        <!-- Image Container -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            app:cardCornerRadius="8dp"
+            app:strokeWidth="0dp"
+            app:cardBackgroundColor="@color/bg_gray">
+            <ImageView
+                android:id="@+id/imgProdVector"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:src="@drawable/ic_bag"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Product Specs Info -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="14dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtProdName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tas Branded Import"
+                android:textColor="@color/text_dark"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/txtProdPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Rp 350.000"
+                android:textColor="@color/brand_navy"
+                android:textSize="13sp"
+                android:textStyle="bold"/>
+
+            <!-- Trip origin tag -->
+            <TextView
+                android:id="@+id/txtProdOrigin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Trip: Korea"
+                android:textColor="@color/text_muted"
+                android:textSize="11sp"/>
+
+        </LinearLayout>
+
+        <!-- Arrow action -->
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_nav_home"
+            android:rotation="90"
+            android:tint="@color/text_muted"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

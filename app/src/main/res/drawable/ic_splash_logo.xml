@@ -1,0 +1,29 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+    <!-- Outer circle glowing effect -->
+    <path
+        android:pathData="M64,8C33.1,8 8,33.1 8,64s25.1,56 56,56 56,-25.1 56,-56S94.9,8 64,8z"
+        android:fillColor="#0D5C91"
+        android:fillAlpha="0.08"/>
+    <!-- Central Shield/Badge -->
+    <path
+        android:pathData="M64,16C37.5,16 16,37.5 16,64s21.5,48 48,48 48,-21.5 48,-48S90.5,16 64,16z"
+        android:fillColor="#0D5C91"/>
+    <!-- Shopping Bag Handle -->
+    <path
+        android:pathData="M48,52V42c0,-8.8 7.2,-16 16,-16s16,7.2 16,16v10"
+        android:strokeColor="#F59E0B"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"/>
+    <!-- Shopping Bag Body -->
+    <path
+        android:pathData="M38,50h52a4,4 0,0 1,4 4v34a10,10 0,0 1,-10 10H44a10,10 0,0 1,-10 -10V54a4,4 0,0 1,4 -4z"
+        android:fillColor="#FFFFFF"/>
+    <!-- Airplane Silhouette on the bag -->
+    <path
+        android:pathData="M64,60 L67,69 L76,69 L69,73 L71,81 L64,76 L57,81 L59,73 L52,69 L61,69 Z"
+        android:fillColor="#F59E0B"/>
+</vector>

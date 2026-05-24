@@ -2,4 +2,33 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <!-- Brand colors (Updated Palette) -->
+    <!-- Primary: Muted Moss Green (#01704B) -->
+    <color name="brand_navy">#01704B</color>
+    <!-- Primary Light: 8% Tinted Moss Green for badge/selection highlights -->
+    <color name="brand_navy_light">#E6F4EF</color>
+    <!-- Secondary: Calm Amber-Gold (#EDC172) -->
+    <color name="brand_gold">#EDC172</color>
+    <!-- Secondary Dark: Contrast Gold for legible text on gold bg -->
+    <color name="brand_gold_dark">#926D2B</color>
+    <!-- Tertiary: Warm Bone White (#FBF8F2) -->
+    <color name="bg_gray">#FBF8F2</color>
+    <!-- Neutral Border: Light warm border -->
+    <color name="card_border">#E5E3DF</color>
+    
+    <!-- Status colors -->
+    <color name="status_pending">#F97316</color>
+    <color name="status_pending_bg">#FFEDD5</color>
+    <color name="status_processing">#3B82F6</color>
+    <color name="status_processing_bg">#DBEAFE</color>
+    <color name="status_shipped">#8B5CF6</color>
+    <color name="status_shipped_bg">#EDE9FE</color>
+    <color name="status_completed">#10B981</color>
+    <color name="status_completed_bg">#D1FAE5</color>
+
+    <!-- Neutral Text & Lines: Warm Charcoal Progression -->
+    <color name="text_dark">#2E2E2E</color> <!-- Warm Charcoal Dark for primary text -->
+    <color name="text_muted">#7C7A76</color> <!-- Warm Charcoal Muted for captions -->
+    <color name="divider">#EFECE6</color> <!-- Warm Bone White border/dividers -->
 </resources>
